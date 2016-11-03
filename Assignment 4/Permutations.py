@@ -39,13 +39,19 @@ def perm(k, permList,acc=[]):
 		return acc
 
 #get inputs from user
-N = int(input("n: "))
-K = int(input("k: "))-1
+N = input("n: ")
+K = input("k: ")
 
 #check user inputs
-if(K < 0 or K > math.factorial(N)):
-	print("Given K value out of bounds (max permutations is {})...exiting!".format(math.factorial(N)))
+if N == "" or K == "":
+	print("Insufficient values given")
 	sys.exit()
+else:
+	N = int(N)
+	K = int(K) - 1
+	if(K < 0 or K > math.factorial(N)):
+		print("Given K value out of bounds (max permutations is {})...Exiting!".format(math.factorial(N)))
+		sys.exit()
 
 #output result
 print("Output: " + str(perm(K,listGen(N))))
