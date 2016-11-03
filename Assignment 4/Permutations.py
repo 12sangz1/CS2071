@@ -34,6 +34,7 @@ def perm(k, permList):
 
 		#repeat for remaining digits
 		return [value] + perm(k,permList[:digitLoc]+permList[digitLoc+1:])
+	
 	else:
 		return []
 
