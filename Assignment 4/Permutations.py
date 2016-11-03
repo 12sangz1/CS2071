@@ -21,7 +21,7 @@ def listGen(n):
 
 
 #Function to take kth permutation of objects in permList
-def perm(k, permList):
+def perm(k, permList,acc=[]):
 
 	#n holds the number of objects remaining to be permutated
 	n = len(permList)
@@ -33,10 +33,10 @@ def perm(k, permList):
 		value = permList[digitLoc]
 
 		#repeat for remaining digits
-		return [value] + perm(k,permList[:digitLoc]+permList[digitLoc+1:])
-	
+		return perm(k,permList[:digitLoc]+permList[digitLoc+1:],acc + [value])
+		
 	else:
-		return []
+		return acc
 
 #get inputs from user
 N = int(input("n: "))
