@@ -7,6 +7,10 @@ How to run program:
 	3: Follow prompt for 'k: ', enter the kth permutation you want, and hit the 'Enter' key
 	4: View results
 
+Note: This program will work for lists of length up to 997 (larger than 9 values!)
+
+
+
 Sample runs can be found at the end of this program file
 '''
 import math
@@ -33,7 +37,7 @@ def perm(k, permList,acc=[]):
 		value = permList[digitLoc]
 
 		#repeat for remaining digits
-		return perm(k,permList[:digitLoc]+permList[digitLoc+1:],acc + [value])
+		return perm(k , permList[:digitLoc]+permList[digitLoc+1:] ,acc + [value])
 		
 	else:
 		return acc
