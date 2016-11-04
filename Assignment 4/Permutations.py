@@ -21,7 +21,7 @@ def listGen(n):
 
 
 # Tail recursive function to take the kth permutation of objects in permList
-# O(n) time complexity
+# O(n^2) time complexity (due to factorial function time complexity)
 # O(1) space complexity through tail recursion
 def perm(k, permList, acc=[]):
 
