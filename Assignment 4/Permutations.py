@@ -64,22 +64,22 @@ print("Output: " + str(perm(K,listGen(N))))
 '''
 Sample Runs)
 
-A: python Permutations.py
+Example A: python Permutations.py
 	n: 4
 	k: 5
 	Output: [1, 4, 2, 3]
 
-B: python Permutations.py
+Example B: python Permutations.py
 	n: 4
 	k: 1
 	Output: [1, 2, 3, 4]
 
-C: python Permutations.py
+Example C: python Permutations.py
 	n: 4
 	k: 24
 	Output: [4, 3, 2, 1]
 
-D: python Permutations.py
+Example D: python Permutations.py
 n: 4
 k: 30
 Given K value out of bounds (max permutations is 24)...exiting!
