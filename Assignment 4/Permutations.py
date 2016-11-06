@@ -80,11 +80,10 @@ k: 30
 Given K value out of bounds (max permutations is 24)...exiting!
 
 Performance analysis - 
-If n is the lenght of the list we'd like to permutate, then this program runs in O(n^2) time.
+If n is the length of the list we'd like to permutate, then this program runs in O(n^2) time.
 
 This is because for every element in n, the factorial of n must be computed. This is an O(n) operation. Because the factorial must be found n times,
-the algorithm itself is O(n^2)
-Permutating the list means calculating the permutation for each item, an O(1) computation if you consider finding the factorial seperate.
-
-
+the algorithm itself is O(n^2).
+Permutating the list means calculating the permutated item for each index, an O(C)[constant] computation if you consider finding the factorial seperate. This
+does not contribute to the complexity of the program in a meaningful way. 
 '''
