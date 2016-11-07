@@ -10,8 +10,8 @@ How to run program:
 
 Note about counting backwards from last permutation: To count starting from the last permuation, simply use negative indices (Eg: k = -1 = 24 in the case of permutations of 4 objects)
 
-
 Sample runs can be found at the end of this program file along with discussion of complexity
+
 '''
 
 import math
@@ -65,33 +65,26 @@ Sample Runs)
 
 Example A: python Permutations.py
 	n: 4
-	k: 5
+	k: 5 (or )
 	Output: [1, 4, 2, 3]
 
 Example B: python Permutations.py
 	n: 4
-	k: 1
+	k: 1 (or -24)
 	Output: [1, 2, 3, 4]
 
 Example C: python Permutations.py
 	n: 4
-	k: 24
+	k: 24 (or -1)
 	Output: [4, 3, 2, 1]
 
 Example D: python Permutations.py
-n: 4
-k: 30
-Given K value out of bounds (max permutations is 24)...exiting!
+	n: 4
+	k: 30
+	Output: Given K value out of bounds (max permutations is 24)...exiting!
 
 
-Bonus Questions
-
-    1.) By entering negative values for 'k', the user is able to count back from the last permutation (See note at top of documentation by intructions for running)
-
-    2.) We chose to submit the project in Python(3) because we get the ability to handle very very large integers for free, and since handling large integers is the main issue when calculating the kth permutation of a very large set (9+ elements) Python handles this with no problems, thus we've solved #2 as well.
-
-
-Performance analysis - 
+Performance Analysis - 
 If n is the length of the list we'd like to permutate, then this program runs in O(n^2) time.
 
 This is because for every element in n, the factorial of n must be computed. This is an O(n) operation. Because the factorial must be found n times,
@@ -101,4 +94,13 @@ does not contribute to the complexity of the program in a meaningful way.
 
 Additionally, the number of primitive operations, such as comparisons or basic arithmetic operations (Eg: + or -), within the body of our 'perm' function contributes to a constant 'c' that is applied to the complexity of this program.
 This constant however, is disregarded as it is insignificant to the overall complexity. That is c*O(n^2) is considered to be equivalent to O(n^2) in terms of complexity.
+
+Bonus Questions
+
+    1.) By entering negative values for 'k', the user is able to count back from the last permutation (See note at top of documentation by intructions for running)
+
+    2.) We chose to submit the project in Python(3) because we get the ability to handle very very large integers for free, and since handling large integers is the main issue when calculating the kth permutation of a very large set (9+ elements) Python handles this with no problems, thus we've solved #2 as well.
+
+
 '''
+
