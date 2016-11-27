@@ -89,8 +89,6 @@ If n is the length of the list we'd like to permutate, then this program runs in
 
 This is because for every element in n, the factorial of n must be computed. This is an O(n) operation. Because the factorial must be found n times,
 the algorithm itself is O(n^2).
-Permutating the list means calculating the permutated item for each index, an O(C)[constant] computation if you consider finding the factorial seperate. This
-does not contribute to the complexity of the program in a meaningful way. 
 
 Additionally, the number of primitive operations, such as comparisons or basic arithmetic operations (Eg: + or -), within the body of our 'perm' function contributes to a constant 'c' that is applied to the complexity of this program.
 This constant however, is disregarded as it is insignificant to the overall complexity. That is c*O(n^2) is considered to be equivalent to O(n^2) in terms of complexity.
