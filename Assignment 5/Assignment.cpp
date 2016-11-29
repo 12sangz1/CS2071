@@ -129,11 +129,24 @@ public:
 
     return minimumCostSpanningTree;
   }
+
+    vector<Edge> prim() {
+        vector<Edge> E1;
+
+
+
+
+        return E1;
+    }
+
 };
 
 int main() {
   int numVertices, numEdges;
-  cin >> numVertices >> numEdges;
+  cout<< "num vertices: ";
+  cin >> numVertices;
+  cout << "num edges: ";
+  cin >> numEdges;
   vector<string> vertices(numVertices);
   vector<Edge> edges(numEdges);
 
@@ -141,14 +154,20 @@ int main() {
    * Process the input of vertices
    */
   for (int i = 0; i < numVertices; ++i) {
+    cout<<"input vertices: ";
     cin >> vertices[i];
   }
 
   /**
-   * Process the input of vertices
+   * Process the input of edges
    */
   for (int i = 0; i < numEdges; ++i) {
-    cin >> edges[i].v1 >> edges[i].v2 >> edges[i].weight;
+    cout<<"input edge "<<i+1<<" start vertex: ";
+    cin >> edges[i].v1;
+    cout<<"input edge "<<i+1<<" end vertex: ";
+    cin>> edges[i].v2;
+    cout<<"input edge " << i+1<<" weight: ";
+    cin >> edges[i].weight;
   }
 
   /**
