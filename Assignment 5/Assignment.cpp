@@ -141,32 +141,35 @@ public:
         //add a vertex to V1 to start the process
         V1.push_back(this->vertices[0]);
 
-        for(int i = 0; i < this->edges.size()-1; i++){
-            //find an edge in this->edges of min cost that connects vertex in V1 to vertex not in V1
-            //of all edges, select the ones that connect a vertex in V1 to a vertex not in V1
+        for(int n = 0; n < this->edges.size()-1; n++){
+            //find an edge in this->edges of min cost that connects vertex in V1 to a vertex not in V1
+
             vector<Edge> bridgeEdges;
-            for(iterator it = V1.begin(); it != V1.end(); it++){
 
-                for(iterator j = this->edges.begin(); j != this->edges.end(); j++){
-                    if(this->edges.at(j).touches(V1.at(it))) bridgeEdges.push_back(this->edges.at(j));
+            //of all edges in graph, select ones with one vertex in V1 and one not in V1
+            for(int i = 0; i < this->edges.size(); i++){
+                    //if the edge has got one foot in and one foot out
+                if((find(V1.begin(),V1.end(),this->edges[i].v1) != V1.end() && find(V1.begin(),V1.end(),this->edges[i].v2)==V1.end()) || (find(V1.begin(),V1.end(),this->edges[i].v1) == V1.end() && find(V1.begin(),V1.end(),this->edges[i].v2)!= V1.end())){
+                    //add it to bridge edges (shake it all about)
+                    bridgeEdges.push_back(this->edges[i]);
                 }
-
             }
+
             //find min cost edge that satisfies above requirement
             sort(bridgeEdges.begin(),bridgeEdges.end());
 
             //add that edge and the new vertex to E1 and V1 respectively
             if(bridgeEdges.size()>0){
-                E1.push_back(bridgeEdges.at(0));
+                E1.push_back(bridgeEdges[0]);
                 //add the vertex that is not in V1 already
-                if(find(V1.begin(),V1.end(),bridgeEdges.at(0).v1) != V1.end()){
-                    V1.push_back(bridgeEdges.at(0).v2);
+                if(find(V1.begin(),V1.end(),bridgeEdges[0].v1) != V1.end()){
+                    V1.push_back(bridgeEdges[0].v2);
                 }else{
-                    V1.push_back(bridgeEdges.at(0).v1);
+                    V1.push_back(bridgeEdges[0].v1);
                     }
             }
         }
-
+        return E1;
 
     }
 
@@ -207,10 +210,20 @@ int main() {
   Graph G(vertices, edges);
   vector<Edge> minimumCostSpanningTree = G.kruskal();
 
-  // Print minimum spanning tree
+  // Print minimum spanning tree A
+  cout<<"printing out kruskal result..."<<endl;
   for (int i = 0; i < minimumCostSpanningTree.size(); ++i) {
     cout << minimumCostSpanningTree[i].v1 << " -- " << minimumCostSpanningTree[i].v2 << " " << minimumCostSpanningTree[i].weight << endl;
   }
+
+  minimumCostSpanningTree = G.prim();
+
+  // Print minimum spanning tree B
+  cout<<"printing out prim result..."<<endl;
+  for (int i = 0; i < minimumCostSpanningTree.size(); ++i) {
+    cout << minimumCostSpanningTree[i].v1 << " -- " << minimumCostSpanningTree[i].v2 << " " << minimumCostSpanningTree[i].weight << endl;
+  }
+
 
   return 0;
 }
