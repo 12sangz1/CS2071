@@ -44,8 +44,8 @@ private:
     string returnRoot = vertex;
 
     // Keep climbing up ancestral chain until we find the root
-    while (parentMap[vertex] != returnRoot) {
-      returnRoot = parentMap[vertex];
+    while (parentMap[returnRoot] != returnRoot) {
+      returnRoot = parentMap[returnRoot];
     }
 
     return returnRoot;
