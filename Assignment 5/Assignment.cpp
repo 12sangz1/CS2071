@@ -15,7 +15,7 @@ struct Edge {
   }
 
   bool touches(string v){
-    (v1==v || v2 == v)
+    (v1==v || v2 == v);
   }
 
   Edge(string inV1, string inV2, int inWeight): v1(inV1), v2(inV2), weight(inWeight) {}
