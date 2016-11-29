@@ -14,6 +14,10 @@ struct Edge {
     return this->weight < otherEdge.weight;
   }
 
+  bool touches(string v){
+    (v1==v || v2 == v)
+  }
+
   Edge(string inV1, string inV2, int inWeight): v1(inV1), v2(inV2), weight(inWeight) {}
   Edge() {}
 };
@@ -132,11 +136,38 @@ public:
 
     vector<Edge> prim() {
         vector<Edge> E1;
+        vector<string> V1;
+
+        //add a vertex to V1 to start the process
+        V1.push_back(this->vertices[0]);
+
+        for(int i = 0; i < this->edges.size()-1; i++){
+            //find an edge in this->edges of min cost that connects vertex in V1 to vertex not in V1
+            //of all edges, select the ones that connect a vertex in V1 to a vertex not in V1
+            vector<Edge> bridgeEdges;
+            for(iterator it = V1.begin(); it != V1.end(); it++){
+
+                for(iterator j = this->edges.begin(); j != this->edges.end(); j++){
+                    if(this->edges.at(j).touches(V1.at(it))) bridgeEdges.push_back(this->edges.at(j));
+                }
+
+            }
+            //find min cost edge that satisfies above requirement
+            sort(bridgeEdges.begin(),bridgeEdges.end());
+
+            //add that edge and the new vertex to E1 and V1 respectively
+            if(bridgeEdges.size()>0){
+                E1.push_back(bridgeEdges.at(0));
+                //add the vertex that is not in V1 already
+                if(find(V1.begin(),V1.end(),bridgeEdges.at(0).v1) != V1.end()){
+                    V1.push_back(bridgeEdges.at(0).v2);
+                }else{
+                    V1.push_back(bridgeEdges.at(0).v1);
+                    }
+            }
+        }
 
 
-
-
-        return E1;
     }
 
 };
