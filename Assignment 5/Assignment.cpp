@@ -155,15 +155,15 @@ public:
         vector<Edge> E1;
         vector<string> V1;
 
-                    //add a vertex to V1 to start the process
+        //add a vertex to V1 to start the process
         V1.push_back(this->vertices[vertex]);
 
         for(int n = 0; n < this->edges.size()-1; n++){
-                    //find an edge in this->edges of min cost that connects vertex in V1 to a vertex not in V1
+            //find an edge in this->edges of min cost that connects vertex in V1 to a vertex not in V1
 
             vector<Edge> bridgeEdges;
 
-                    //of all edges in graph, select ones with one vertex in V1 and one not in V1
+            //of all edges in graph, select ones with one vertex in V1 and one not in V1
             for(int i = 0; i < this->edges.size(); i++){
                     //if the edge has got one foot in and one foot out
                 if((find(V1.begin(),V1.end(),this->edges[i].v1) != V1.end() && find(V1.begin(),V1.end(),this->edges[i].v2)==V1.end()) || (find(V1.begin(),V1.end(),this->edges[i].v1) == V1.end() && find(V1.begin(),V1.end(),this->edges[i].v2)!= V1.end())){
@@ -172,16 +172,16 @@ public:
                 }
             }
 
-                    //if exists edges that connect vertices in V1 to ones not in V1
             if(bridgeEdges.size()>0){
-                    //get min cost edge
+
+                //get min cost edge
                 int minLoc = 0;
-                for(int j = 1; j < bridgeEdges.size(); j++){
-                    minLoc = bridgeEdges[j] < bridgeEdges[minLoc] ? j : minLoc;
+                for(int i = 0; i < bridgeEdges.size(); i++){
+                    minLoc = bridgeEdges[i] < bridgeEdges[minLoc] ? i : minLoc;
                 }
                 E1.push_back(bridgeEdges[minLoc]);
 
-                    //add the vertex that is not in V1 already
+                //add the vertex that is not in V1 already
                 if(find(V1.begin(),V1.end(),bridgeEdges[minLoc].v1) != V1.end()){
                     V1.push_back(bridgeEdges[minLoc].v2);
                 }else{
@@ -254,9 +254,8 @@ int main() {
   /**
    * Talk to Graph Class to run and time Prim
    */
-
   clock_t clock_prim_sum;
-  for (int i = 0; i < numVertices; i++) {
+  for (int i = 0; i <numVertices; i++) {
     clock_t clock_prim_start = clock();
     for (int j = 0; j < NUM_RUNS; j++) {
       minimumCostSpanningTree = G.prim(i);
