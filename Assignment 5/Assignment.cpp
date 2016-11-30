@@ -171,17 +171,20 @@ public:
                 }
             }
 
-            //find min cost edge that satisfies above requirement
-            sort(bridgeEdges.begin(),bridgeEdges.end());
-
-            //add that edge and the new vertex to E1 and V1 respectively
             if(bridgeEdges.size()>0){
-                E1.push_back(bridgeEdges[0]);
+
+                //get min cost edge
+                int minLoc = 0;
+                for(int i = 0; i < bridgeEdges.size(); i++){
+                    minLoc = bridgeEdges[i] < bridgeEdges[minLoc] ? i : minLoc;
+                }
+                E1.push_back(bridgeEdges[minLoc]);
+
                 //add the vertex that is not in V1 already
-                if(find(V1.begin(),V1.end(),bridgeEdges[0].v1) != V1.end()){
-                    V1.push_back(bridgeEdges[0].v2);
+                if(find(V1.begin(),V1.end(),bridgeEdges[minLoc].v1) != V1.end()){
+                    V1.push_back(bridgeEdges[minLoc].v2);
                 }else{
-                    V1.push_back(bridgeEdges[0].v1);
+                    V1.push_back(bridgeEdges[minLoc].v1);
                     }
             }
         }
@@ -232,7 +235,7 @@ int main() {
   }
   clock_t clock_kruskal_end = clock();
   clock_t clock_kruskal_result = (clock_kruskal_end - clock_kruskal_start);
-  
+
   G.sortEdges();
   clock_t clock_kruskalNoSort_start =  clock();
   for (int i = 0; i < NUM_RUNS; i++) {
@@ -242,7 +245,7 @@ int main() {
   clock_t clock_kruskalNoSort_result = (clock_kruskalNoSort_end - clock_kruskalNoSort_start);
 
   // Print minimum spanning tree A
-  cout<<"printing out kruskal result..."<<endl;
+  cout<<endl<<"printing out kruskal result..."<<endl;
   for (int i = 0; i < minimumCostSpanningTree.size(); ++i) {
     cout << minimumCostSpanningTree[i].v1 << " -- " << minimumCostSpanningTree[i].v2 << " " << minimumCostSpanningTree[i].weight << endl;
   }
@@ -262,7 +265,7 @@ int main() {
   clock_t clock_prim_result = clock_prim_sum / numVertices;
 
   // Print minimum spanning tree B
-  cout<<"printing out prim result..."<<endl;
+  cout<<endl<<"printing out prim result..."<<endl;
   for (int i = 0; i < minimumCostSpanningTree.size(); ++i) {
     cout << minimumCostSpanningTree[i].v1 << " -- " << minimumCostSpanningTree[i].v2 << " " << minimumCostSpanningTree[i].weight << endl;
   }
