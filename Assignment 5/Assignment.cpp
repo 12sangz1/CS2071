@@ -150,12 +150,12 @@ public:
     return minimumCostSpanningTree;
   }
 
-    vector<Edge> prim() {
+    vector<Edge> prim(int vertex) {
         vector<Edge> E1;
         vector<string> V1;
 
         //add a vertex to V1 to start the process
-        V1.push_back(this->vertices[0]);
+        V1.push_back(this->vertices[vertex]);
 
         for(int n = 0; n < this->edges.size()-1; n++){
             //find an edge in this->edges of min cost that connects vertex in V1 to a vertex not in V1
@@ -250,13 +250,16 @@ int main() {
   /**
    * Talk to Graph Class to run and time Prim
    */
-  clock_t clock_prim_start = clock();
-  for (int i = 0; i < NUM_RUNS; i++) {
-      minimumCostSpanningTree = G.prim();
+  clock_t clock_prim_sum;
+  for (int i = 0; i <numVertices; i++) {
+    clock_t clock_prim_start = clock();
+    for (int j = 0; j < NUM_RUNS; j++) {
+      minimumCostSpanningTree = G.prim(i);
+    }
+    clock_t clock_prim_end = clock();
+    clock_prim_sum += clock_prim_end - clock_prim_start;
   }
-  clock_t clock_prim_end = clock();
-  clock_t clock_prim_result = clock_prim_end - clock_prim_start;
-
+  clock_t clock_prim_result = clock_prim_sum / numVertices;
 
   // Print minimum spanning tree B
   cout<<"printing out prim result..."<<endl;
@@ -277,8 +280,8 @@ int main() {
 
   timeInSeconds = (clock_prim_result / (long double) CLOCKS_PER_SEC);
   cout << "---------------------------------------------------------" << endl;
-  cout << "Prim Time in Seconds for " << NUM_RUNS << " runs: " << timeInSeconds << endl;
+  cout << "Prim Time in Seconds for " << NUM_RUNS << " runs averaged: " << timeInSeconds << endl;
   cout << "---------------------------------------------------------" << endl;
-  
+
   return 0;
 }
