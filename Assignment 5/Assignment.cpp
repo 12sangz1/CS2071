@@ -309,6 +309,7 @@ Prim Time in Seconds for 10000 runs averaged: 1.93304
 
 The Kruskal algorithm is considerably faster than the prim algorithm, even with its sort. It averages being 6 times vaster
 
-Kruskal's algorithm runs in O(n*log(n)) time. Kruskal's algorithm includes a quicksort, which runs in O(n*log(n)) time. Prim's algorithm runs in O(n^2) time. In both cases, n is the number of edges.
+Kruskal's algorithm runs in O(n*log(n)) time. Kruskal's algorithm includes a quicksort, which runs in O(n*log(n)) time. With sorting Kruskal's algorithm is O(2*(n*log(n))), but the constant is ignored in calculation of time complexity.
+ Prim's algorithm runs in O(n^2) time. In both cases, n is the number of edges.
 
 *********************************************************************************************************************/
