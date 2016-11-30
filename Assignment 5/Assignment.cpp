@@ -172,6 +172,7 @@ public:
 };
 
 int main() {
+  const int NUM_RUNS = 10000;
   int numVertices, numEdges;
   cout<< "num vertices: ";
   cin >> numVertices;
@@ -201,10 +202,19 @@ int main() {
   }
 
   /**
-   * Talk to Graph class to run Kruskal
+   * Talk to Graph class to run and time Kruskal
    */
   Graph G(vertices, edges);
-  vector<Edge> minimumCostSpanningTree = G.kruskal();
+  vector<Edge> minimumCostSpanningTree;
+  clock_t clock_kruskal_start =  clock();
+  for (int i = 0; i < NUM_RUNS; i++) {
+     minimumCostSpanningTree = G.kruskal();
+  }
+  clock_t clock_kruskal_end = clock();
+  clock_t clock_kruskal_result = (clock_kruskal_end - clock_kruskal_start);
+  
+  
+
 
   // Print minimum spanning tree A
   cout<<"printing out kruskal result..."<<endl;
@@ -212,7 +222,16 @@ int main() {
     cout << minimumCostSpanningTree[i].v1 << " -- " << minimumCostSpanningTree[i].v2 << " " << minimumCostSpanningTree[i].weight << endl;
   }
 
-  minimumCostSpanningTree = G.prim();
+  /**
+   * Talk to Graph Class to run and time Prim
+   */
+  clock_t clock_prim_start = clock();
+  for (int i = 0; i < NUM_RUNS; i++) {
+      minimumCostSpanningTree = G.prim();
+  }
+  clock_t clock_prim_end = clock();
+  clock_t clock_prim_result = clock_prim_end - clock_prim_start;
+
 
   // Print minimum spanning tree B
   cout<<"printing out prim result..."<<endl;
@@ -220,6 +239,16 @@ int main() {
     cout << minimumCostSpanningTree[i].v1 << " -- " << minimumCostSpanningTree[i].v2 << " " << minimumCostSpanningTree[i].weight << endl;
   }
 
+
+  long double timeInSeconds = (clock_kruskal_result / (long double) CLOCKS_PER_SEC);
+  cout << "---------------------------------------------------------" << endl;
+  cout << "Kruskal Time in Seconds for " << NUM_RUNS << " runs: " << timeInSeconds << endl;
+  cout << "---------------------------------------------------------" << endl;
+
+  timeInSeconds = (clock_prim_result / (long double) CLOCKS_PER_SEC);
+  cout << "---------------------------------------------------------" << endl;
+  cout << "Prim Time in Seconds for " << NUM_RUNS << " runs: " << timeInSeconds << endl;
+  cout << "---------------------------------------------------------" << endl;
 
   return 0;
 }
