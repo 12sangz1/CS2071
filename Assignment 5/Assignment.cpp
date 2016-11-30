@@ -289,3 +289,26 @@ int main() {
 
   return 0;
 }
+
+
+/******************************************************************************************************************
+ Analyis - Dom Farolino, Kurt Lewis, Zachary Sang
+
+Analysis for the different algorithms over their respective scenarios was done over the course of 10,000 runs of the algorithms. This accounts for 
+random interefernce, and gives a more clear distinction between the different algorithms.
+
+---------------------------------------------------------     
+Kruskal Time in Seconds for 10000 runs: 0.315945              
+---------------------------------------------------------     
+---------------------------------------------------------     
+Kruskal No Sort Time in Seconds for 10000 runs: 0.29184       
+---------------------------------------------------------     
+---------------------------------------------------------     
+Prim Time in Seconds for 10000 runs averaged: 1.93304         
+---------------------------------------------------------  
+
+The Kruskal algorithm is considerably faster than the prim algorithm, even with its sort. It averages being 6 times vaster
+
+Kruskal's algorithm runs in O(n*log(n)) time. Kruskal's algorithm includes a quicksort, which runs in O(n*log(n)) time. Prim's algorithm runs in O(n^2) time. In both cases, n is the number of edges.
+
+*********************************************************************************************************************/
