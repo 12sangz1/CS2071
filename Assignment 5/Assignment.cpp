@@ -126,6 +126,26 @@ public:
    */
   vector<Edge> kruskalNoSort() {
     vector<Edge> minimumCostSpanningTree;
+    this->createDisjointSets();
+
+    string root1, root2;
+    for (int i = 0; i < edges.size(); ++i) {
+      root1 = findRoot(edges[i].v1);
+      root2 = findRoot(edges[i].v2);
+
+      /**
+       * If root1 and root2 are not in the same
+       * set, join them. If they are we don't need
+       * to push this edge to the minimum cost spanning
+       * tree. Regardless we know that the edge linking
+       * root1's root with root2's root we come across first
+       * is the shortest, since we sorted mate!
+       */
+      if (root1 != root2) {
+        minimumCostSpanningTree.push_back(edges[i]);
+        mergeTrees(root1, root2);
+      }
+    }
 
     return minimumCostSpanningTree;
   }
@@ -213,8 +233,13 @@ int main() {
   clock_t clock_kruskal_end = clock();
   clock_t clock_kruskal_result = (clock_kruskal_end - clock_kruskal_start);
   
-  
-
+  G.sortEdges();
+  clock_t clock_kruskalNoSort_start =  clock();
+  for (int i = 0; i < NUM_RUNS; i++) {
+     minimumCostSpanningTree = G.kruskalNoSort();
+  }
+  clock_t clock_kruskalNoSort_end = clock();
+  clock_t clock_kruskalNoSort_result = (clock_kruskalNoSort_end - clock_kruskalNoSort_start);
 
   // Print minimum spanning tree A
   cout<<"printing out kruskal result..."<<endl;
@@ -245,10 +270,15 @@ int main() {
   cout << "Kruskal Time in Seconds for " << NUM_RUNS << " runs: " << timeInSeconds << endl;
   cout << "---------------------------------------------------------" << endl;
 
+  timeInSeconds = (clock_kruskalNoSort_result / (long double) CLOCKS_PER_SEC);
+  cout << "---------------------------------------------------------" << endl;
+  cout << "Kruskal No Sort Time in Seconds for " << NUM_RUNS << " runs: " << timeInSeconds << endl;
+  cout << "---------------------------------------------------------" << endl;
+
   timeInSeconds = (clock_prim_result / (long double) CLOCKS_PER_SEC);
   cout << "---------------------------------------------------------" << endl;
   cout << "Prim Time in Seconds for " << NUM_RUNS << " runs: " << timeInSeconds << endl;
   cout << "---------------------------------------------------------" << endl;
-
+  
   return 0;
 }
